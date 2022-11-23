@@ -8,20 +8,16 @@ bands.addBand(new Band("Bon Jovi"));
 bands.addBand(new Band("Héroes del Silencio"));
 bands.addBand(new Band("Metallica"));
 
-console.log(bands);
 
 //Mensajes de Sockets
 io.on("connection", (client) => {
-  console.log("Cliente Conectado");
 
   client.emit("active-bands", bands.getBands());
 
   client.on("disconnect", () => {
-    console.log("Cliente Desconectado");
   });
 
   client.on("mensaje", (payload) => {
-    console.log("Mensaje", payload);
     io.emit("mensaje", { admin: "Nuevo mensaje" });
   });
 
